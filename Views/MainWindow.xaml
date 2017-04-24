@@ -1,0 +1,41 @@
+﻿<Window x:Class="Reader.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Reader" Height="525" Width="720">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--Grid Content-->
+        <Grid Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <!-- Inner grid content -->
+            <CheckBox IsChecked="{Binding AutoClipboard}" Margin="0,0,5,10" ToolTip="If checked, auto read all text copied to the clipboard."/>
+            <Slider Value="{Binding Rate}" Grid.Column="2" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True" Margin="5,0,0,10" ToolTip="Rate at which the text is read."/>
+        </Grid>
+        
+        <TextBox Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding TextBoxText}" AcceptsReturn="True" TextWrapping="Wrap" />
+        <Button Content="Speak" Command="{Binding SpeakCommand}" Grid.Row="2" Margin="0,10,5,0" Padding="0,3,0,3" />
+        <Button Content="{Binding PauseText}" Command="{Binding PauseCommand}" Grid.Row="2" Grid.Column="1" Margin="5,10,5,0" Padding="0,3,0,3" />
+        <Button Content="Stop" Command="{Binding StopCommand}" Grid.Row="2" Grid.Column="2" Margin="5,10,0,0" Padding="0,3,0,3" />
+    </Grid>
+</Window>
